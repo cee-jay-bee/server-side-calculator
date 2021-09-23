@@ -10,7 +10,6 @@ app.use( bodyParser.urlencoded( {extended: true}));
 // globals
 const port = 3000;
 let historicalCalculations = [];
-let historicalAnswers = [];
 
 
 // spin up server
@@ -19,26 +18,35 @@ app.listen( port, ()=>{
 })
 
 // routes
+app.delete( '/calculator', (req, res)=>{
+    console.log('/calculator DELETE HIT');
+    historicalCalculations = [];
+    res.send(historicalCalculations);
+})
+
 app.get( '/calculator', (req, res)=>{
     console.log('/calculator GET HIT');
-    res.send(historicalAnswers);
+    res.send(historicalCalculations);
 })
 
 app.post( '/calculator', (req, res)=>{
     console.log('/calculator POST HIT', req.body);
     if (req.body.calculation === '+'){
-        historicalAnswers.push(Number(req.body.firstNumber) + Number(req.body.secondNumber));
+        historicalCalculations.push({firstNumber: req.body.firstNumber, calculation: req.body.calculation,
+            secondNumber: req.body.secondNumber, answer: Number(req.body.firstNumber) + Number(req.body.secondNumber)});
     }
     if (req.body.calculation === '-'){
-        historicalAnswers.push(Number(req.body.firstNumber) - Number(req.body.secondNumber));
+        historicalCalculations.push({firstNumber: req.body.firstNumber, calculation: req.body.calculation,
+            secondNumber: req.body.secondNumber, answer: Number(req.body.firstNumber) - Number(req.body.secondNumber)});
     }
     if (req.body.calculation === '*'){
-        historicalAnswers.push(Number(req.body.firstNumber) * Number(req.body.secondNumber));
+        historicalCalculations.push({firstNumber: req.body.firstNumber, calculation: req.body.calculation,
+            secondNumber: req.body.secondNumber, answer: Number(req.body.firstNumber) * Number(req.body.secondNumber)});
     }
     if (req.body.calculation === '÷'){
-        historicalAnswers.push(Number(req.body.firstNumber) / Number(req.body.secondNumber));
+        historicalCalculations.push({firstNumber: req.body.firstNumber, calculation: req.body.calculation,
+            secondNumber: req.body.secondNumber, answer: Number(req.body.firstNumber) / Number(req.body.secondNumber)});
     }
-    historicalCalculations.push(req.body);
-    console.log(historicalCalculations, historicalAnswers);
+    console.log(historicalCalculations);
     res.sendStatus(200);
 })

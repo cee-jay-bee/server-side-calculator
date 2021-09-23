@@ -4,7 +4,7 @@ let calculationData = [];
 
 
 function onReady(){
-    
+    getHistory();
 }
 
 function clearOutput(){
@@ -17,7 +17,7 @@ function clearOutput(){
 function appendNumber( input ){
     console.log('in the Append:', input);
     let el = $('#outputDiv');
-    el.append(`<h4>${input}</h4>`);
+    el.append(`<br><br><span>${input}</span>`);
     calculationData.push(input);
     console.log(calculationData);
 }
@@ -55,6 +55,20 @@ function calculate(){
     getAnswer();
 }
 
+function deleteHistory(){
+    $.ajax({
+        method: 'DELETE',
+        url: '/calculator'
+    }).then(function( response ){
+        let el = $('#historicalCalc');
+        el.empty();
+        alert('History Deleted!');
+    }).catch(function ( err ){
+        alert('uh oh, there is an error. Check console for details');
+        console.log( err );
+    })
+}
+
 function getAnswer(){
     $.ajax({
         method: 'GET',
@@ -62,7 +76,30 @@ function getAnswer(){
     }).then(function( response ){
         let el = $('#outputDiv');
         el.empty();
-        el.append(`<h4>${response[response.length-1]}</h4>`);
+        el.append(`<br><br><span>${response[response.length-1].answer}</span>`);
+
+        let elToo = $('#historicalCalc');
+        elToo.empty();
+        
+        for (let i = 0; i < response.length; i++){
+            elToo.append(`<li class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</li>`);
+        }
+    }).catch(function ( err ){
+        alert('uh oh, there is an error. Check console for details');
+        console.log( err );
+    })
+}
+
+function getHistory(){
+    $.ajax({
+        method: 'GET',
+        url: '/calculator'
+    }).then(function( response ){
+        let el = $('#historicalCalc');
+        el.empty();
+        for (let i = 0; i < response.length; i++){
+            el.append(`<li class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</li>`);
+        }
     }).catch(function ( err ){
         alert('uh oh, there is an error. Check console for details');
         console.log( err );

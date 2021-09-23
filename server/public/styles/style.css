@@ -11,7 +11,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -20,7 +20,8 @@ body {
       "seven eight nine multiplication"
       "four five six division"
       "one two three addition"
-      "decimal zero zero subtraction";
+      "decimal zero zero subtraction"
+      "delete delete delete delete";
     align-content: center;
     width: 50%;
     margin: auto;
@@ -32,6 +33,10 @@ body {
     display: flex;
     color: white;
 
+}
+
+#historyDiv {
+    color: black;
 }
 
 *{
@@ -55,6 +60,7 @@ body {
 .multiplication { grid-area: multiplication; }
 .addition { grid-area: addition; }
 .subtraction { grid-area: subtraction; }
+.delete { grid-area: delete; }
 
 
 button {
@@ -75,4 +81,23 @@ button:hover {
     text-align: center;
     margin: 0;
     padding: 10px; 
+}
+
+.previousCalcs {
+    font-size: 3em;
+    font-weight: 1000;
+    width: 66%;
+    text-align: center;
+    margin: 0;
+    padding: 10px; 
+    margin: auto;
+}
+
+#historyTitle {
+    font-size: 5em;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    padding: 10px; 
+    margin: auto;
 }
