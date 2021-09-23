@@ -15,7 +15,7 @@ body {
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      "output output output output"
+      "input input output output"
       "clear clear equals equals"
       "seven eight nine multiplication"
       "four five six division"
@@ -42,7 +42,12 @@ body {
 *{
     box-sizing: border-box;
 }
-
+#inputDiv {
+    grid-area: input;
+    background-color: black;
+    display: flex;
+    color: white;
+}
 .decimal { grid-area: decimal; }
 .one { grid-area: one; }
 .two { grid-area: two; }

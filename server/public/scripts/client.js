@@ -7,8 +7,8 @@ function onReady(){
     getHistory();
 }
 
-function clearOutput(){
-    let el = $('#outputDiv');
+function clearInput(){
+    let el = $('#inputDiv');
     el.empty();
     calculationData = [];
 
@@ -16,13 +16,14 @@ function clearOutput(){
 
 function appendNumber( input ){
     console.log('in the Append:', input);
-    let el = $('#outputDiv');
+    let el = $('#inputDiv');
     el.append(`<br><br><span>${input}</span>`);
     calculationData.push(input);
     console.log(calculationData);
 }
 
 function calculate(){
+    $('#inputDiv').empty();
     let calculation;
     let firstNumber;
     let secondNumber;
@@ -52,6 +53,7 @@ function calculate(){
         console.log( err );
     })
 
+    calculationData = [];
     getAnswer();
 }
 
