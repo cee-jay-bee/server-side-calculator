@@ -10,6 +10,68 @@
     <title>Server Side Calculator</title>
 </head>
 <body>
-    <h1>Server Side Calculator</h1>
+    <div id="title">
+        <h1>Server Side Calculator</h1>
+    </div>
+    
+    <div class="container">
+        <div id="outputDiv">
+            
+        </div>
+        <div class="division">
+            <button id="division" onclick="appendNumber('÷')">÷</button>
+        </div>
+        <div class="multiplication">
+            <button id="multiplication" onclick="appendNumber('*')">*</button>
+        </div>
+        <div class="addition">
+            <button id="addition" onclick="appendNumber('+')">+</button>
+        </div>
+        <div class="subtraction">
+            <button id="subtraction" onclick="appendNumber('-')">-</button>
+        </div>
+        <div class="equals">
+            <button id="equals" onclick="calculate()">=</button>
+        </div>
+        <div class="zero">
+            <button id="zero" onclick="appendNumber(0)">0</button>
+        </div>
+        <div class="decimal">
+            <button id="decimal" onclick="appendNumber('.')">.</button>
+        </div>
+        <div class="one">
+            <button id="one" onclick="appendNumber(1)">1</button>
+        </div>
+        <div class="two">
+            <button id="two" onclick="appendNumber(2)">2</button>
+        </div>
+        <div class="three">
+            <button id="three" onclick="appendNumber(3)">3</button>
+        </div>
+        <div class="four">
+            <button id="four" onclick="appendNumber(4)">4</button>
+        </div>
+        <div class="five">
+            <button id="five" onclick="appendNumber(5)">5</button>
+        </div>
+        <div class="six">
+            <button id="six" onclick="appendNumber(6)">6</button>
+        </div>
+        <div class="seven">
+            <button id="seven" onclick="appendNumber(7)">7</button>
+        </div>
+        <div class="eight">
+            <button id="eight" onclick="appendNumber(8)">8</button>
+        </div>
+        <div class="nine">
+            <button id="nine" onclick="appendNumber(9)">9</button>
+        </div>
+        <div class="clear">
+            <button id="clear" onclick="clearOutput()">C</button>
+        </div>
+    </div>
+    <div id="historyDiv">
+
+    </div>
 </body>
 </html>

@@ -1,5 +1,78 @@
 body {
-    background-color: #09a99e;
+    background: linear-gradient(to right, #9df,#09a99e) ;
     color: white;
     font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "output output output output"
+      "clear clear equals equals"
+      "seven eight nine multiplication"
+      "four five six division"
+      "one two three addition"
+      "decimal zero zero subtraction";
+    align-content: center;
+    width: 50%;
+    margin: auto;
+    vertical-align: auto;
+}
+#outputDiv { 
+    grid-area: output;
+    background-color: black;
+    display: flex;
+    color: white;
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.decimal { grid-area: decimal; }
+.one { grid-area: one; }
+.two { grid-area: two; }
+.three { grid-area: three; }
+.four { grid-area: four; }
+.five { grid-area: five; }
+.six { grid-area: six; }
+.seven { grid-area: seven; }
+.eight { grid-area: eight; }
+.nine { grid-area: nine; }
+.clear { grid-area: clear; }
+.equals { grid-area: equals; }
+.zero { grid-area: zero; }
+.division { grid-area: division; }
+.multiplication { grid-area: multiplication; }
+.addition { grid-area: addition; }
+.subtraction { grid-area: subtraction; }
+
+
+button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px, solid #09a99e;
+    background-color: #9df;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #09a99e;
+}
+
+#title {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 10px; 
 }
