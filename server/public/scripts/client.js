@@ -60,17 +60,44 @@ function calculate(){
 }
 
 function deleteHistory(){
-    $.ajax({
-        method: 'DELETE',
-        url: '/calculator'
-    }).then(function( response ){
-        let el = $('#historyDiv');
-        el.empty();
-        alert('History Deleted!');
-    }).catch(function ( err ){
-        alert('uh oh, there is an error. Check console for details');
-        console.log( err );
-    })
+    if (confirm('Do you really want to delete your History?')){
+        $.ajax({
+            method: 'DELETE',
+            url: '/history'
+        }).then(function( response ){
+            let el = $('#historyDiv');
+            el.empty();
+            el.append('<h5 id="historyTitle">History</h5>');
+            alert('History Deleted!');
+        }).catch(function ( err ){
+            alert('uh oh, there is an error. Check console for details');
+            console.log( err );
+        })
+    }
+    
+}
+
+function deleteLast(){
+    if(confirm('Are you sure you want to delete the Last Calculation in your History?')){
+        $.ajax({
+            method: 'DELETE',
+            url: '/calculator'
+        }).then(function( response ){
+            let el = $('#historyDiv');
+            el.empty();
+            el.append('<h5 id="historyTitle">History</h5>');
+    
+            for (let i = 0; i < response.length; i++){
+                el.append(`<p id="${i}" class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} 
+                ${response[i].secondNumber} <button class="rerunButton">Re-Run Calc</button></p>`);
+            }
+            alert('Last Calculation Deleted!');
+        }).catch(function ( err ){
+            alert('uh oh, there is an error. Check console for details');
+            console.log( err );
+        })
+    }
+    
 }
 
 function getAnswer(){
@@ -125,7 +152,6 @@ function rerunCalc(){
         el.empty();
         el.append(`<br><br><span>${response[indexOfCalc].answer}</span>`);
         
-
         el = $('#inputDiv');
         el.empty();
         el.append(`${response[indexOfCalc].firstNumber} ${response[indexOfCalc].calculation} 

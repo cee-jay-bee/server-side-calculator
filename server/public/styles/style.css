@@ -19,7 +19,7 @@ body {
       "four five six division"
       "one two three addition"
       "decimal zero zero subtraction"
-      "delete delete delete delete";
+      "deleteLast deleteLast deleteHistory deleteHistory";
     align-content: center;
     width: 50%;
     margin: auto;
@@ -73,7 +73,8 @@ body {
 .multiplication { grid-area: multiplication; }
 .addition { grid-area: addition; }
 .subtraction { grid-area: subtraction; }
-.delete { grid-area: delete; }
+.deleteLast { grid-area: deleteLast; }
+.deleteHistory { grid-area: deleteHistory; }
 
 button {
     cursor: crosshair;

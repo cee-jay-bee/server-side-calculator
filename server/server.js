@@ -20,6 +20,13 @@ app.listen( port, ()=>{
 // routes
 app.delete( '/calculator', (req, res)=>{
     console.log('/calculator DELETE HIT');
+    historicalCalculations.pop();
+    console.log(historicalCalculations);
+    res.send(historicalCalculations);
+})
+
+app.delete( '/history', (req, res)=>{
+    console.log('/history DELETE HIT');
     historicalCalculations = [];
     res.send(historicalCalculations);
 })
