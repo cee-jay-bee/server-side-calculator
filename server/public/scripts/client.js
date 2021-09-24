@@ -1,14 +1,15 @@
 $(document).ready(onReady);
 let calculationData = [];
 
-
-
 function onReady(){
     getHistory();
+    console.log($('#division').val());
 }
 
 function clearInput(){
     let el = $('#inputDiv');
+    el.empty();
+    el = $('#outputDiv');
     el.empty();
     calculationData = [];
 
@@ -62,7 +63,7 @@ function deleteHistory(){
         method: 'DELETE',
         url: '/calculator'
     }).then(function( response ){
-        let el = $('#historicalCalc');
+        let el = $('#historyDiv');
         el.empty();
         alert('History Deleted!');
     }).catch(function ( err ){
@@ -80,11 +81,11 @@ function getAnswer(){
         el.empty();
         el.append(`<br><br><span>${response[response.length-1].answer}</span>`);
 
-        let elToo = $('#historicalCalc');
+        let elToo = $('#historyDiv');
         elToo.empty();
-        
+        elToo.append('<h4 id="historyTitle">History</h4>');
         for (let i = 0; i < response.length; i++){
-            elToo.append(`<li class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</li>`);
+            elToo.append(`<p class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</p>`);
         }
     }).catch(function ( err ){
         alert('uh oh, there is an error. Check console for details');
@@ -97,10 +98,12 @@ function getHistory(){
         method: 'GET',
         url: '/calculator'
     }).then(function( response ){
-        let el = $('#historicalCalc');
+        let el = $('#historyDiv');
         el.empty();
+        el.append('<h4 id="historyTitle">History</h4>');
         for (let i = 0; i < response.length; i++){
-            el.append(`<li class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</li>`);
+            el.append(`<p class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} 
+            ${response[i].secondNumber}</p>`);
         }
     }).catch(function ( err ){
         alert('uh oh, there is an error. Check console for details');
