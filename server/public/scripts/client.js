@@ -99,7 +99,7 @@ function getAnswer(){
     }).then(function( response ){
         let el = $('#outputDiv');
         el.empty();
-        el.append(`<br><br><span>${response[response.length-1].answer}</span>`);
+        el.append(`<span>${response[response.length-1].answer}</span>`);
 
         let elToo = $('#historyDiv');
         elToo.empty();
