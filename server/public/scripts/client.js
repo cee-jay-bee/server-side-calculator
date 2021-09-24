@@ -3,7 +3,6 @@ let calculationData = [];
 
 function onReady(){
     getHistory();
-    console.log($('#division').val());
     $( '#historyDiv' ).on( 'click', '.rerunButton', rerunCalc );
 }
 
@@ -13,15 +12,12 @@ function clearInput(){
     el = $('#outputDiv');
     el.empty();
     calculationData = [];
-
 }
 
 function appendNumber( input ){
-    console.log('in the Append:', input);
     let el = $('#inputDiv');
-    el.append(`<br><br><span>${input}</span>`);
+    el.append(`<span>${input}</span>`);
     calculationData.push(input);
-    console.log(calculationData);
 }
 
 function calculate(){
@@ -49,14 +45,12 @@ function calculate(){
         url: '/calculator',
         data: objectToSend
     }).then(function (response){
-        console.log(response);
+        calculationData = [];
+        getAnswer();
     }).catch(function ( err ){
         alert('uh oh, there is an error. Check console for details');
         console.log( err );
     })
-
-    calculationData = [];
-    getAnswer();
 }
 
 function deleteHistory(){
@@ -74,7 +68,6 @@ function deleteHistory(){
             console.log( err );
         })
     }
-    
 }
 
 function deleteLast(){
@@ -97,7 +90,6 @@ function deleteLast(){
             console.log( err );
         })
     }
-    
 }
 
 function getAnswer(){
@@ -141,7 +133,6 @@ function getHistory(){
 }
 
 function rerunCalc(){
-    console.log('in rerunCalc');
     let indexOfCalc = $(this).parent().attr('id');
 
     $.ajax({
@@ -150,7 +141,7 @@ function rerunCalc(){
     }).then( function ( response ){
         let el = $('#outputDiv');
         el.empty();
-        el.append(`<br><br><span>${response[indexOfCalc].answer}</span>`);
+        el.append(`<span>${response[indexOfCalc].answer}</span>`);
         
         el = $('#inputDiv');
         el.empty();

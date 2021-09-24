@@ -21,7 +21,6 @@ app.listen( port, ()=>{
 app.delete( '/calculator', (req, res)=>{
     console.log('/calculator DELETE HIT');
     historicalCalculations.pop();
-    console.log(historicalCalculations);
     res.send(historicalCalculations);
 })
 
@@ -54,6 +53,5 @@ app.post( '/calculator', (req, res)=>{
         historicalCalculations.push({firstNumber: req.body.firstNumber, calculation: req.body.calculation,
             secondNumber: req.body.secondNumber, answer: Number(req.body.firstNumber) / Number(req.body.secondNumber)});
     }
-    console.log(historicalCalculations);
     res.sendStatus(200);
 })
