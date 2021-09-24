@@ -4,6 +4,7 @@ let calculationData = [];
 function onReady(){
     getHistory();
     console.log($('#division').val());
+    $( '#historyDiv' ).on( 'click', '.rerunButton', rerunCalc );
 }
 
 function clearInput(){
@@ -83,9 +84,10 @@ function getAnswer(){
 
         let elToo = $('#historyDiv');
         elToo.empty();
-        elToo.append('<h4 id="historyTitle">History</h4>');
+        elToo.append('<h5 id="historyTitle">History</h5>');
         for (let i = 0; i < response.length; i++){
-            elToo.append(`<p class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} ${response[i].secondNumber}</p>`);
+            elToo.append(`<p id="${i}" class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} 
+            ${response[i].secondNumber} <button class="rerunButton">Re-Run Calc</button></p>`);
         }
     }).catch(function ( err ){
         alert('uh oh, there is an error. Check console for details');
@@ -100,12 +102,35 @@ function getHistory(){
     }).then(function( response ){
         let el = $('#historyDiv');
         el.empty();
-        el.append('<h4 id="historyTitle">History</h4>');
+        el.append('<h5 id="historyTitle">History</h5>');
         for (let i = 0; i < response.length; i++){
-            el.append(`<p class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} 
-            ${response[i].secondNumber}</p>`);
+            el.append(`<p id="${i}" class="previousCalcs">${response[i].firstNumber} ${response[i].calculation} 
+            ${response[i].secondNumber} <button class="rerunButton">Re-Run Calc</button></p>`);
         }
     }).catch(function ( err ){
+        alert('uh oh, there is an error. Check console for details');
+        console.log( err );
+    })
+}
+
+function rerunCalc(){
+    console.log('in rerunCalc');
+    let indexOfCalc = $(this).parent().attr('id');
+
+    $.ajax({
+        method: 'GET',
+        url: '/calculator'
+    }).then( function ( response ){
+        let el = $('#outputDiv');
+        el.empty();
+        el.append(`<br><br><span>${response[indexOfCalc].answer}</span>`);
+        
+
+        el = $('#inputDiv');
+        el.empty();
+        el.append(`${response[indexOfCalc].firstNumber} ${response[indexOfCalc].calculation} 
+            ${response[indexOfCalc].secondNumber}`);
+    }).catch( function ( err ){
         alert('uh oh, there is an error. Check console for details');
         console.log( err );
     })

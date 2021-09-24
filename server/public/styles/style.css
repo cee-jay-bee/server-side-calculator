@@ -6,8 +6,6 @@ body {
     padding: 0;
 }
 
-
-
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -27,6 +25,7 @@ body {
     margin: auto;
     vertical-align: auto;
 }
+
 #outputDiv { 
     grid-area: output;
     background-color: black;
@@ -45,6 +44,7 @@ body {
 *{
     box-sizing: border-box;
 }
+
 #inputDiv {
     grid-area: input;
     background-color: black;
@@ -55,6 +55,7 @@ body {
     align-items: center;
     padding: 0px 0px 0px 10px;
 }
+
 .decimal { grid-area: decimal; }
 .one { grid-area: one; }
 .two { grid-area: two; }
@@ -74,14 +75,22 @@ body {
 .subtraction { grid-area: subtraction; }
 .delete { grid-area: delete; }
 
-
 button {
-    cursor: pointer;
+    cursor: crosshair;
     font-size: 2rem;
     border: 1px, solid #09a99e;
     background-color: #9df;
     display: block;
     width: 100%;
+}
+
+.rerunButton{
+    font-size: 1rem;
+    border: 1px, solid #09a99e;
+    background-color: #9df;
+    display: block;
+    margin: auto;
+    width: 50%;
 }
 
 button:hover {
@@ -96,7 +105,7 @@ button:hover {
 }
 
 .previousCalcs {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 1000;
     width: 66%;
     text-align: center;
@@ -106,7 +115,7 @@ button:hover {
 }
 
 #historyTitle {
-    font-size: 5em;
+    font-size: 3em;
     width: 50%;
     text-align: center;
     margin: 0;
