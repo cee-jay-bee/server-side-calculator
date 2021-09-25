@@ -27,17 +27,42 @@ function calculate(){
     let secondNumber;
 
     for (let i = 0; i < calculationData.length; i++){
+        if (calculationData[i] === '.' && calculationData[i+1] === '.'){
+            alert('Only enter one decimal in a row');
+            calculationData =[];
+            return;
+        }
+        
         if (calculationData[i] === '*' || calculationData[i] === '÷' || 
         calculationData[i] === '+' || calculationData[i] === '-'){
-            calculation = calculationData.slice(i, i+1);
-            firstNumber = calculationData.slice (0, i);
-            secondNumber = calculationData.slice (i+1, calculationData.length);
+            if(calculationData[i+1] === '*' || calculationData[i+1] === '÷' || 
+            calculationData[i+1] === '+' || calculationData[i+1] === '-'){
+                alert('Only enter one operator into your calculation.');
+                calculationData =[];
+                return;
+            } else {
+                calculation = calculationData.slice(i, i+1);
+                firstNumber = calculationData.slice (0, i);
+                secondNumber = calculationData.slice (i+1, calculationData.length);
+            }
         }
+    }
+
+    if (!calculation || firstNumber.length === 0 || secondNumber.length === 0){
+        alert('Please enter a full calculation including: two numbers and an operator.');
+        calculationData =[];
+        return;
     }
     let objectToSend = {
         firstNumber: Number(firstNumber.join('')),
         calculation: calculation.join(''),
         secondNumber: Number(secondNumber.join(''))
+    }
+
+    if (Number.isNaN(objectToSend.firstNumber) || Number.isNaN(objectToSend.secondNumber)){
+        alert('Please enter valid numbers into your calculation.');
+        calculationData =[];
+        return;
     }
 
     $.ajax({
