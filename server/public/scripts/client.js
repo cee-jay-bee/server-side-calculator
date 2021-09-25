@@ -36,7 +36,7 @@ function calculate(){
         if (calculationData[i] === '*' || calculationData[i] === '÷' || 
         calculationData[i] === '+' || calculationData[i] === '-'){
             if(calculationData[i+1] === '*' || calculationData[i+1] === '÷' || 
-            calculationData[i+1] === '+' || calculationData[i+1] === '-'){
+            calculationData[i+1] === '+'){
                 alert('Only enter one operator into your calculation.');
                 calculationData =[];
                 return;
